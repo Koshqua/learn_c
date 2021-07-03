@@ -3,6 +3,9 @@
 
 #define MAX_SIZE 1000
 
+char line[MAX_SIZE];
+char longest[MAX_SIZE];
+int len,max, templen;
 
 int getLine(char to[], int lim){
     int i,c;
@@ -23,11 +26,11 @@ void cp (char from[], char to[]){
 }
 
 int main(){
-    int len,max, templen;
     max = 0;
     templen = 0;
-    char line[MAX_SIZE];
-    char longest[MAX_SIZE];
+    // extern is used to show that used variable is in global scope.
+    // redundant here, because variable declaration happens earlier.
+    extern char line[], longest[];
     while ((len = getLine(line, MAX_SIZE)) > 0){
         if (line[len -1] == '\n'){
             if(templen > 0){
