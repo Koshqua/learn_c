@@ -23,17 +23,30 @@ void cp (char from[], char to[]){
 }
 
 int main(){
-    int len,max;
+    int len,max, templen;
     max = 0;
+    templen = 0;
     char line[MAX_SIZE];
     char longest[MAX_SIZE];
-
     while ((len = getLine(line, MAX_SIZE)) > 0){
-        if (len > max){
-            max = len;
-            cp(line, longest);
+        if (line[len -1] == '\n'){
+            if(templen > 0){
+                templen += len;
+                max = templen;
+                cp(line, longest);
+                templen = 0;
+            } else {
+                if (len > max){
+                    max = len;
+                    cp(line, longest);
+                }
+            }
+        } else if (len == (MAX_SIZE -1) && line[len -1] != '\n'){
+            templen += len;
+            printf("%s\n", line);
         }
     }
+    printf("length is %3d\n", max);
     printf("%s",longest);
 }
 
